@@ -63,7 +63,7 @@ def get_content_url(constructor, url, user="", password=""):
     try:
         response = requests.get(url)
         response.encoding = response.apparent_encoding
-        # access the data
+        # access to data
         if response.status_code == 200:
             content = response.text
             return content
@@ -268,11 +268,11 @@ def get_mcafee(workbook):
         title = line.find_all('td')[1].text
         worksheet.set_column('{0}:{0}'.format(chr(0 + ord('A'))), len(str(title)) + 2)
         worksheet.write(row, 0, title)
-        # date
+        # Date
         date = line.find_all('td')[2].text
         worksheet.set_column('{0}:{0}'.format(chr(1 + ord('A'))), len(str(date)) + 2)
         worksheet.write(row, 1, date)
-        # Link du bulletin
+        # Link
         link = line.findAll('td')[0].find('a').get('href')
         worksheet.set_column('{0}:{0}'.format(chr(2 + ord('A'))), len(str(link)) + 2)
         worksheet.write(row, 2, link)
@@ -298,7 +298,7 @@ def get_microsoft(workbook):
 def main():
     # File stored on the current folder
     file_excel = os.path.join(os.getcwd(), 'vulns_database.xlsx')
-    # creation fichier excel
+    # Create Excel file
     workbook = xlsxwriter.Workbook(file_excel)
     get_mcafee(workbook)
     get_redhat(workbook)
